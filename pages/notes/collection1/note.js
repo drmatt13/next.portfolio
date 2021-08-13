@@ -106,7 +106,7 @@ const CodeCard = ({ data }) => {
 }
 
 export default CodeCard`,
-"render": ["html 1", "css"]
+"render 1": ["html 2", "css"]
 },
 
 {

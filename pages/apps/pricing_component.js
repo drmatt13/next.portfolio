@@ -1,5 +1,5 @@
-import App from '../../components/App'
-import Component from '../../apps/App1/Component'
+import App from '../../apps/Pricing Component/App'
+import AppContainer from '../../components/AppContainer'
 import generateStaticProps from '../../utilities/generateStaticProps'
 
 export async function getStaticProps() {
@@ -7,5 +7,5 @@ export async function getStaticProps() {
 }
 
 export default function index () { 
-  return <App><Component /></App>
+  return <AppContainer><App /></AppContainer>
 }
