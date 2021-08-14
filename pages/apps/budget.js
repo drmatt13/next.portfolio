@@ -1,4 +1,4 @@
-import App from '../../apps/Pricing Component/App'
+import App from '../../apps/Budget/App'
 import AppContainer from '../../components/AppContainer'
 import generateStaticProps from '../../utilities/generateStaticProps'
 
