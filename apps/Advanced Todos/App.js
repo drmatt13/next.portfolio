@@ -37,7 +37,7 @@ const App = () => {
       "recurring": "yearly"
     },
     {
-      "name": "side job",
+      "name": "side job esfefeefefefwefwefwefwef",
       "amount": 400,
       "start": "8/6/2021",
       // "stop": "9/10/2021",
@@ -99,7 +99,14 @@ const App = () => {
         <div className={styles.spacer} />
         <Todos todos={todos} setTodos={setTodos} setModal={setModal} />
       </div>
-      {modal && <Modal modal={modal} setModal={setModal} />}
+      {modal && <Modal 
+        modal={modal} 
+        setModal={setModal} 
+        transactions={transactions} 
+        setTransactions={setTransactions} 
+        setTodos={setTodos} 
+        todos={todos} 
+      />}
     </div>
   </>
 }
