@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.app {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient( 114.9deg,  rgba(34,34,34,1) 8.3%, rgba(0,40,60,1) 41.6%, rgb(58, 98, 119) 93.4% );
+
+  .app_container {
+    height: 70vh;
+    width: 60vw;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-image: radial-gradient( circle 590px at 8.2% 13.8%,  rgb(49, 59, 75) 0%, rgb(36, 56, 90) 90% );
+    padding: 20px;
+
+    .sort_container {
+      background-image: linear-gradient( 114.9deg,  rgba(133, 133, 133, 0.5) 8.3%, rgba(3, 94, 139, 0.5) 41.6%, rgb(89, 123, 141) 93.4% );
+      border-radius: 20px;
+      height: 80%;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+      div {
+        flex: 1;
+        background-color: orange;
+        transition: background-color .5s ease-out;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+      }
+
+      div:hover {
+        background-color: rgb(225, 225, 225);
+        transition: background-color .01s ease-in;
+      }
+
+    }
+
+
+
+  }
+}
+
+
+

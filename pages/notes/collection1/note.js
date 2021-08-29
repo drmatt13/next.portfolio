@@ -1,10 +1,11 @@
-import generateStaticProps from '../../../utilities/generateStaticProps'
+import { useState } from 'react'
 
 // components
 import Notes from '../../../components/Notes'
 
-export async function getStaticProps() {
-  return generateStaticProps(JSON.stringify([
+export default function index () {
+
+  const [data] = useState(JSON.stringify([
 
 {
 "html 1": `<h1>test header1</h1>`,
@@ -120,16 +121,16 @@ export default CodeCard`,
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-	<script src="index.js"></script>
+  <script src="index.js"></script>
   </body>
 </html>`,
 "css": `* { 
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 html, body {
-	min-height: 100%;
-	background: #fff;
-	color: #000;
+  min-height: 100%;
+  background: #fff;
+  color: #000;
 }`,
 "typescript": `@Get('/:id')
 getMessage(@Param('id') id: string) {
@@ -188,98 +189,9 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE) {
 }
 ?>`,
 "render": ["html 1", "css"]
-},
-
-// {
-// // "html": "<h1>lol</h1>",
-// "javascript": `import { useEffect, useCallback, useRef } from "react"
-
-// import hljs from 'highlight.js';
-// import 'highlight.js/styles/Lioshi.css'; //Tomorrow Night Bright
-
-// const CodeCard = ({ data }) => {
-
-//   const cardRef = useRef()
-
-//   const generateCodeCard = useCallback(() => {
-//     // check if this card represents an image -- configure after
-//     if (data["image-sm"] || data["image-md"] || data["image-lg"]) {
-//       // -----
-//     } else {
-//       for (const [language, value] of Object.entries(data)) {
-//         // render button
-//         if (language === 'render') {
-//         // create code tab
-//         } else {
-//           if (value !== null) {
-//             const pre = document.createElement('div')
-//             pre.innerHTML = hljs.highlight(value, { language }).value
-//             cardRef.current.appendChild(pre)
-//           }
-//         }
-//       }
-//     }
-//   }, [])
-
-//   const render = useCallback(() => {
-
-//   }, [])
-
-//   useEffect(generateCodeCard, [])
-
-//   return <div ref={cardRef} className="card" />
-// }
-
-// export default CodeCard`
-// },
-
-// {
-// // "html": "<h1>lol</h1>",
-// "javascript": `import { useEffect, useCallback, useRef } from "react"
-
-// import hljs from 'highlight.js';
-// import 'highlight.js/styles/Lioshi.css'; //Tomorrow Night Bright
-
-// const CodeCard = ({ data }) => {
-
-//   const cardRef = useRef()
-
-//   const generateCodeCard = useCallback(() => {
-//     // check if this card represents an image -- configure after
-//     if (data["image-sm"] || data["image-md"] || data["image-lg"]) {
-//       // -----
-//     } else {
-//       for (const [language, value] of Object.entries(data)) {
-//         // render button
-//         if (language === 'render') {
-//         // create code tab
-//         } else {
-//           if (value !== null) {
-//             const pre = document.createElement('div')
-//             pre.innerHTML = hljs.highlight(value, { language }).value
-//             cardRef.current.appendChild(pre)
-//           }
-//         }
-//       }
-//     }
-//   }, [])
-
-//   const render = useCallback(() => {
-
-//   }, [])
-
-//   useEffect(generateCodeCard, [])
-
-//   return <div ref={cardRef} className="card" />
-// }
-
-// export default CodeCard`
-// }
-
-  ]))
 }
+  ]))
 
-export default function index ({ data }) { 
   return <Notes data={data} />
 }
 

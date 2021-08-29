@@ -1,10 +1,5 @@
-import generateStaticProps from "../../utilities/generateStaticProps"
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-
-export async function getStaticProps() {
-  return generateStaticProps()
-}
 
 export default function index() {
   const r = useRouter(),

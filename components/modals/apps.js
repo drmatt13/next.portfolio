@@ -1,19 +1,52 @@
+import { useState } from 'react'
+import Image from 'next/image'
 import Link from '../Link'
 
-const index = ({apps, toggleModal}) => {
-  return (
-    <div className="fade-in">
+// styles
+import styles from '../../styles/Modal-apps.module.scss'
+
+// Images
+import advancedTodos from '../../public/images/apps/Advanced Todos.png'
+import pricingComponent from '../../public/images/apps/Pricing Component.png'
+import VisualSort from '../../public/images/apps/Visual Sort.png'
+
+const index = ({ toggleModal }) => {
+
+  const [apps] = useState([
+    "Advanced Todos",
+    "Pricing Component",
+    "Visual Sort",
+    "Pricing Component",
+    "Pricing Component"
+  ])
+
+  return <>
+    {/* <style jsx global>{`
+
+    `}</style> */}
+    <div className={`${styles.modal_container} fade-in`}>
       {apps.map((app, i) => (
         <Link 
           key={i} 
-          href={`/apps/${app.split(".")[0]}`}
+          href={`/apps/${app.split(" ").join("-").toLowerCase()}`}
           toggleModal={toggleModal}
         >
-          {app.split(".")[0]}
+          <div className={styles.app_container}>
+            <div className={styles.image_container}>
+              <div>
+                {app === "Advanced Todos" && <Image className="Image" src={advancedTodos} layout="fill" />}
+                {app === "Pricing Component" && <Image className="Image" src={pricingComponent} layout="fill" />}
+                {app === "Visual Sort" && <Image className="Image" src={VisualSort} layout="fill" />}
+              </div>
+            </div>
+            <div className={styles.test}>
+              {app}
+            </div>
+          </div>
         </Link> 
       ))}
     </div>
-  )
+  </>
 }
 
 export default index

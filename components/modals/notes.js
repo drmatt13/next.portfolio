@@ -1,25 +1,31 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
 import Link from '../Link'
 
-const index = ({ noteCollections, notes, toggleModal }) => {
+const index = ({ toggleModal }) => {
 
-  useEffect(() => {
-    // console.log(notes);
-  }, [])
+  const [notes] = useState({
+    'collection1': ['Note', 'Note2']
+  })
 
-  return (
+  const [keys] = useState(Object.keys(notes))
+
+  return <>
     <div className="fade-in">
-      {notes[0].map((note, i) => (
-          <Link 
-            key={i} 
-            href={`/notes/collection1/${note.split(".")[0]}`}
-            toggleModal={toggleModal}
-          >
-            {note.split(".")[0]}
-          </Link>
+      {keys.map((key, i) => (
+        <div key={i}>
+          {notes[key].map((note, j) => (
+            <Link 
+              key={j} 
+              href={`/notes/${key}/${note.split(" ").join("-").toLowerCase()}`}
+              toggleModal={toggleModal}
+            >
+              {note}
+            </Link>
+          ))}
+        </div>
       ))}
     </div>
-  )
+  </>
 }
 
 export default index

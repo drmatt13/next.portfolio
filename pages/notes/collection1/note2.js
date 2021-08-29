@@ -1,11 +1,11 @@
-import generateStaticProps from '../../../utilities/generateStaticProps'
+import { useState } from 'react'
 
 // components
 import Notes from '../../../components/Notes'
 
-export async function getStaticProps() {
-  return generateStaticProps(JSON.stringify([
+export default function index () {
 
+  const [data] = useState(JSON.stringify([
 {
 'html': `<head>
 <!-- Font Awesome CDN -->
@@ -111,9 +111,7 @@ document.getElementById("end-btn").addEventListener("click", () => {
 }
 
   ]))
-}
 
-export default function index ({ data }) { 
   return <Notes data={data} />
 }
 
