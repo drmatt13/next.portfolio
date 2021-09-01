@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from '../Link'
 
-const index = ({ toggleModal }) => {
+const Index = ({ toggleModal }) => {
 
   const [notes] = useState({
     'collection1': ['Note', 'Note2']
@@ -28,4 +28,4 @@ const index = ({ toggleModal }) => {
   </>
 }
 
-export default index
+export default Index

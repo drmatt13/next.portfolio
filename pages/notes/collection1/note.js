@@ -3,7 +3,7 @@ import { useState } from 'react'
 // components
 import Notes from '../../../components/Notes'
 
-export default function index () {
+export default function Index () {
 
   const [data] = useState(JSON.stringify([
 

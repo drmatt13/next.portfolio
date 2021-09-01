@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-export default function index() {
+export default function Index() {
   const r = useRouter(),
   f = async () => {
     await r.push(`/${
@@ -10,6 +10,6 @@ export default function index() {
         : ''
     }`) 
   }
-  useEffect(f, [])
+  useEffect(f, [r])
   return <></>
 }

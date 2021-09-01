@@ -1,4 +1,4 @@
-const settings = () => {
+const Index = () => {
   return (
     <div className="fade-in">
       settings
@@ -6,4 +6,4 @@ const settings = () => {
   )
 }
 
-export default settings
+export default Index

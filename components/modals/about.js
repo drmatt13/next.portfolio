@@ -1,4 +1,4 @@
-const about = () => {
+const Index = () => {
   return (
     <div className="fade-in">
       about
@@ -6,4 +6,4 @@ const about = () => {
   )
 }
 
-export default about
+export default Index
