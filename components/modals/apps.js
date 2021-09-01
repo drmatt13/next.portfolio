@@ -9,6 +9,7 @@ import styles from '../../styles/Modal-apps.module.scss'
 import advancedTodos from '../../public/images/apps/Advanced Todos.png'
 import pricingComponent from '../../public/images/apps/Pricing Component.png'
 import VisualSort from '../../public/images/apps/Visual Sort.png'
+import PathFinder from '../../public/images/apps/Path Finder.png'
 
 const index = ({ toggleModal }) => {
 
@@ -16,7 +17,7 @@ const index = ({ toggleModal }) => {
     "Advanced Todos",
     "Pricing Component",
     "Visual Sort",
-    "Pricing Component",
+    "Path Finder",
     "Pricing Component"
   ])
 
@@ -37,6 +38,7 @@ const index = ({ toggleModal }) => {
                 {app === "Advanced Todos" && <Image className="Image" src={advancedTodos} layout="fill" />}
                 {app === "Pricing Component" && <Image className="Image" src={pricingComponent} layout="fill" />}
                 {app === "Visual Sort" && <Image className="Image" src={VisualSort} layout="fill" />}
+                {app === "Path Finder" && <Image className="Image" src={PathFinder} layout="fill" />}
               </div>
             </div>
             <div className={styles.test}>
