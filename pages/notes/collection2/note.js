@@ -1,10 +1,12 @@
-import generateStaticProps from '../../../utilities/generateStaticProps'
+import { useState } from 'react'
 
 // components
 import Notes from '../../../components/Notes'
 
-export async function getStaticProps() {
-  return generateStaticProps(JSON.stringify([
+export default function Index () {
+
+  const [data] = useState(JSON.stringify([
+
 
 {
 "html": null,
@@ -15,18 +17,16 @@ export async function getStaticProps() {
 "image-sm": null,
 "image": null
 },
-
+    
 {
-"html": `<h1>hello world</h1>`,
+"html 1": `<h1>hello world</h1>`,
 "css": `* { background-color: #000; }`,
 "js": `console.log("hello world")`,
-"render": true
+"render": ["html 1", "css"]
 }
 
   ]))
-}
 
-export default function Index ({ data }) { 
   return <Notes data={data} />
 }
 
