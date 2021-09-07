@@ -21,6 +21,7 @@ const CodeCard = ({ data }) => {
       "javascript": ["devicon-javascript-plain colored", "js"],
       "nodejs": ["devicon-nodejs-plain colored", "js"],
       "reactjs": ["devicon-react-original colored", "js"],
+      "redux": ["devicon-redux-original colored", "js"],
       "nextjs": ["devicon-nextjs-original colored", "js"],
       "graphql": ["devicon-graphql-plain colored", "js"],
       "sql": ["devicon-postgresql-plain colored", "sql"],
@@ -34,6 +35,10 @@ const CodeCard = ({ data }) => {
       "npm": ["devicon-npm-original-wordmark colored", null],
       "git": ["devicon-git-plain colored", null],
       "docker": ["devicon-docker-plain colored", null],
+      "kubernetes": ["devicon-kubernetes-plain colored", null],
+      "facebook": ["devicon-facebook-plain colored", "js"],
+      "cmd": ["devicon-windows8-original colored", null],
+      "terminal": ["fas fa-terminal", null],
       "output": ["fas fa-code", null],
       "media":  ["fas fa-image", null]
     }

@@ -2,7 +2,7 @@ import { useState } from "react"
 import CodeCard from '../components/CodeCard'
 
 export default function Notes ({data}) {
-  const [notes] = useState(JSON.parse(data))
+  const [notes] = useState(data)
   return <div 
   className="background fade-in"
   style={{

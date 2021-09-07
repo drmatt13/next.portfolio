@@ -8,9 +8,9 @@ const App = () => {
   const styleRef = useRef()
   const buttonsRef = useRef()
 
-  const [state, setState] = useState(false)
+  const [state, setState] = useState(0)
   const [range, setRange] = useState(100)
-  const [s] = useState({ "animation": undefined, "el": undefined, "range": undefined, "pos": undefined })
+  const [s] = useState({ "animation": undefined, "el": undefined, "range": undefined })
 
   // fix later
   const onChange = e => {
@@ -20,11 +20,12 @@ const App = () => {
   }
 
   const swapNodes = (node1, node2) => {
-    const afterNode2 = node2.nextElementSibling;
-    const parent = node2.parentNode;
-    node1.replaceWith(node2);
-    parent.insertBefore(node1, afterNode2);
-}
+    const afterNode2 = node2.nextElementSibling, parent = node2.parentNode
+    node1.replaceWith(node2)
+    parent.insertBefore(node1, afterNode2)
+  }
+
+  const triggerNode = n => n.replaceWith(n.cloneNode())
   
   const reset = x => {
     cancelAnimationFrame(s.animation)
@@ -52,37 +53,53 @@ const App = () => {
         background-color: hsl(calc(360 / ${x} * ${i}), 100%, 50%);
       }`
     }
-    s.pos = [0, 0]
     s.range = range
     for (let node of buttonsRef.current.childNodes) {
       node.classList.remove(styles.disabled)
     }
-    setState(false)
+    setState(0)
   }
 
-  const bubbleSort = () => {
-    if (s.pos[0]+1 === +s.range - s.pos[1]) s.pos = [0, s.pos[1]+1]
-    if (+s.range - s.pos[1] === 1) return true
-    if (s.el[s.pos[0]].offsetHeight > s.el[s.pos[0]+1].offsetHeight)
-      swapNodes(s.el[s.pos[0]], s.el[s.pos[0]+1])
-    s.pos[0]++
-    s.animation = requestAnimationFrame(bubbleSort)
+  const bubbleSort = (p=[0,0]) => {
+    if (p[0]+1 === +s.range - p[1]) p = [0, p[1]+1]
+    if (+s.range - p[1] === 1) return true
+    if (s.el[p[0]].offsetHeight > s.el[p[0]+1].offsetHeight)
+      swapNodes(s.el[p[0]], s.el[p[0]+1])
+    else 
+      triggerNode(s.el[p[0]])
+    p[0]++
+    s.animation = requestAnimationFrame(() => bubbleSort(p))
   }
 
-  const insertionSort = () => {
-    if (s.pos[1] === +s.range-1) return true
-    if (s.el[s.pos[0]].offsetHeight > s.el[s.pos[0]+1].offsetHeight) {
-      swapNodes(s.el[s.pos[0]], s.el[s.pos[0]+1])
-      s.pos[0]--
-      if (s.pos[0] === -1) s.pos = [s.pos[1]+1, s.pos[1]+1]
-    } else 
-      s.pos = [s.pos[1]+1, s.pos[1]+1]
-    s.animation = requestAnimationFrame(insertionSort)
+  const insertionSort = (p=[0,0]) => {
+    if (p[1] === +s.range-1) return true
+    if (s.el[p[0]].offsetHeight > s.el[p[0]+1].offsetHeight) {
+      swapNodes(s.el[p[0]], s.el[p[0]+1]), p[0]--
+      if (p[0] === -1) p = [p[1]+1, p[1]+1]
+    } else { triggerNode(s.el[p[0]]), p = [p[1]+1, p[1]+1] }
+    s.animation = requestAnimationFrame(() => insertionSort(p))
   }
 
-  const mergeSort = () => {
-    console.log('merge sort')
-    // s.animation = requestAnimationFrame(mergeSort)
+  const merge = (left, right) => {
+    let resultArray = [], leftIndex = 0, rightIndex = 0
+    while (leftIndex < left.length && rightIndex < right.length) {
+      if (left[leftIndex][1] < right[rightIndex][1]) {
+        resultArray.push(left[leftIndex]), leftIndex++
+      } else {
+        resultArray.push(right[rightIndex]), rightIndex++
+      }
+    }
+    return resultArray
+      .concat(left.slice(leftIndex))
+      .concat(right.slice(rightIndex))
+  }
+
+  const mergeSort = a => {
+    if (a.length <= 1) return a;
+    const m = Math.floor(a.length/2), 
+          l = a.slice(0, m),
+          r = a.slice(m)
+    return merge(mergeSort(l), mergeSort(r))
   }
 
   const quickSort = () => {
@@ -99,19 +116,21 @@ const App = () => {
         selection = node.innerHTML
       }
     }
-    setState(true)
+    setState(1)
     switch (selection) {
       case "Bubble Sort":
-        s.animation = requestAnimationFrame(bubbleSort)
+        bubbleSort()
         break;
       case "Insertion Sort":
-        s.animation = requestAnimationFrame(insertionSort)
+        insertionSort()
         break;
       case "Merge Sort":
-        s.animation = requestAnimationFrame(mergeSort)
+        mergeSort(Array.from(s.el).map((n, i) => [i, n.offsetHeight]))
+        // const sortedNodes = 
+        // for (let n of sortedNodes) console.log(s.el[n[0]]);
         break;
       case "Quick Sort":
-        s.animation = requestAnimationFrame(quickSort)
+        quickSort()
         break;
       default:
         break;
@@ -119,7 +138,7 @@ const App = () => {
   }
 
   const pause = () => {
-    setState(false)
+    setState(2)
     cancelAnimationFrame(s.animation)
   }
 
@@ -145,8 +164,9 @@ const App = () => {
       <div className={styles.app_container}>
         <div className={styles.sort_container}>
           <div className={styles.play}>
-            {state && <i className="fas fa-pause" onClick={pause} />}
-            {!state && <i className="fas fa-play" onClick={play} />}
+            {state === 0 && <i className="fas fa-play" onClick={play} />}
+            {state === 1 && <i className="fas fa-pause" onClick={pause} />}
+            {state === 2 && <i className="fas fa-redo-alt" onClick={play} />}
           </div>
           <div className={styles.sort} ref={sortRef} />
         </div>

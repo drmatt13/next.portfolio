@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
 
   .header {
     width: 100%;
@@ -16,35 +17,22 @@
     flex-shrink: 0;
     display: flex;
     color: grey;
-    border-top-left-radius: 6.25px;
-    border-top-right-radius: 6.25px;
     position: relative;
 
     div {
-      overflow-x: hidden;
-      padding: 0 0 0 7.5px;
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding: 4px 0 4px 7.5px;
       height: 30px;
       width: 150px;
       text-align: left;
       background-color: rgba(0, 0, 0, 0.15);
-      transition: color .1s ease-out;
-      transition: background-color .075s ease-in-out;
+      transition: all .075s ease-in-out;
+      overflow-x: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
 
       i {
         margin-right: 7.5px;
       }
-    }
-
-    div:first-of-type {
-      border-top-left-radius: 6.25px;
-    }
-
-    div:last-of-type {
-      // border-top-right-radius: 6.25px;
     }
 
     div:hover {
@@ -82,8 +70,6 @@
     border: 0;
     background: rgb(39,66,65);
     background: linear-gradient(83deg, rgba(39,66,65,1) 0%, rgba(50,135,75,1) 100%);
-    border-bottom-left-radius: 6.25px;
-    border-bottom-right-radius: 6.25px;
   }
 }
 
