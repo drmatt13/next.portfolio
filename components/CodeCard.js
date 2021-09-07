@@ -19,10 +19,10 @@ const CodeCard = ({ data }) => {
       "html": ["devicon-html5-plain colored", "html"],
       "css": ["devicon-css3-plain colored", "css"],
       "javascript": ["devicon-javascript-plain colored", "js"],
-      "nodejs": ["devicon-nodejs-plain colored", "js"],
-      "reactjs": ["devicon-react-original colored", "js"],
+      "node": ["devicon-nodejs-plain colored", "js"],
+      "react": ["devicon-react-original colored", "js"],
       "redux": ["devicon-redux-original colored", "js"],
-      "nextjs": ["devicon-nextjs-original colored", "js"],
+      "next": ["devicon-nextjs-original colored", "js"],
       "graphql": ["devicon-graphql-plain colored", "js"],
       "sql": ["devicon-postgresql-plain colored", "sql"],
       "mongodb": ["devicon-mongodb-plain colored", "js"],
@@ -31,16 +31,21 @@ const CodeCard = ({ data }) => {
       "java": ["devicon-java-plain colored", "java"],
       "typescript": ["devicon-typescript-plain colored", "typescript"],
       "sass": ["devicon-sass-original colored", "scss"],
+      "tailwind": ["devicon-tailwindcss-plain colored", "html"],
       "php": ["devicon-php-plain colored", "php"],
       "npm": ["devicon-npm-original-wordmark colored", null],
       "git": ["devicon-git-plain colored", null],
       "docker": ["devicon-docker-plain colored", null],
       "kubernetes": ["devicon-kubernetes-plain colored", null],
       "facebook": ["devicon-facebook-plain colored", "js"],
-      "cmd": ["devicon-windows8-original colored", null],
+      "file": ["far fa-file-alt", null],
+      "csv": ["fas fa-file-csv", null],
+      "cmd": ["fas fa-terminal", null],
       "terminal": ["fas fa-terminal", null],
-      "output": ["fas fa-code", null],
-      "media":  ["fas fa-image", null]
+      "output": ["fas fa-code", null, "output"],
+      "image":  ["fas fa-image", null],
+      "readme": ["far fa-file-alt", null],
+      "readme2": ["far fa-file-alt", null, "consolas"]
     }
     return (language in object) ? object[language] : ["fas fa-question", null]
   }, []) 
@@ -73,22 +78,24 @@ const CodeCard = ({ data }) => {
   const generateCodeCard = useCallback(() => {
     let count = 0
     for (let [key, value] of Object.entries(data)) {
+
+      let deconstruct = key.split(" ")
       
-      const [style, language] = deconstructLanguage(key.split(" ")[0])
+      const [style, language, extraStyle] = deconstructLanguage(deconstruct[0])
       if (value !== null) {
         let iframe
         // create tabs
         const div = document.createElement('div')
-        if (key.split(" ")[0] === 'render') {
+        if (deconstruct[0] === 'render') {
           iframe = render(value)
           div.setAttribute("render", true)
-          div.innerHTML = `<i class="devicon-codepen-plain" style="color: limegreen;"></i>${key}`
+          div.innerHTML = `<i class="devicon-codepen-plain" style="color: limegreen;"></i>${deconstruct.length === 1 ? key : deconstruct.slice(1).join(' ')}`
         } else if (["image-sm", "image-md", "image-lg"].includes(key)) {
 
           // image functionality ------- delete this note after
 
         } else {
-          div.innerHTML = `<i class="${style}"></i>${key}`
+          div.innerHTML = `<i class="${style}"></i>${deconstruct.length === 1 ? key : deconstruct.slice(1).join(' ')}`
         }
         div.setAttribute("data", count)
         div.addEventListener("click", () => {setSelectedTab(parseInt(div.getAttribute("data")))})
@@ -99,6 +106,7 @@ const CodeCard = ({ data }) => {
         else {
           const pre = document.createElement('pre')
           pre.style.display = "none"
+          if (extraStyle) pre.classList.add(styles[extraStyle])
           pre.innerHTML = language ? hljs.highlight(value, { language }).value : value
           wrapperRef.current.appendChild(pre)
         }

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react"
 import dynamic from "next/dynamic"
 
 // styles

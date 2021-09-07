@@ -5,7 +5,7 @@ const NotesModal = ({ toggleModal }) => {
 
   const [notes] = useState({
     'collection1': ['Note', 'Note2'],
-    'data-structures': ['linked lists', 'stacks and queues'],
+    'data-structures': ['linked-lists, stacks-&-queues'],
     'react': ['context1', 'redux1']
   })
 

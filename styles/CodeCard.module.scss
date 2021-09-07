@@ -64,6 +64,15 @@
     overflow-x: auto;
   }
 
+  .output {
+    font-family: Consolas, monaco, monospace;
+    color: rgb(50, 225, 120) !important;
+  }
+
+  .consolas {
+    font-family: Consolas, monaco, monospace;
+  }
+
   iframe {
     height: 500px;
     width: 100%;

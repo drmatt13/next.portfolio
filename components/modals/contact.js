@@ -1,4 +1,4 @@
-const Index = () => {
+const ContactModal = () => {
   return (
     <div className="fade-in">
       contact
@@ -6,4 +6,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default ContactModal

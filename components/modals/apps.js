@@ -11,7 +11,7 @@ import pricingComponent from '../../public/images/apps/Pricing Component.png'
 import VisualSort from '../../public/images/apps/Visual Sort.png'
 import PathFinder from '../../public/images/apps/Path Finder.png'
 
-const Index = ({ toggleModal }) => {
+const AppsModal = ({ toggleModal }) => {
 
   const [apps] = useState([
     "Advanced Todos",
@@ -51,4 +51,4 @@ const Index = ({ toggleModal }) => {
   </>
 }
 
-export default Index
+export default AppsModal

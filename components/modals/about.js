@@ -1,4 +1,4 @@
-const Index = () => {
+const AboutModal = () => {
   return (
     <div className="fade-in">
       about
@@ -6,4 +6,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default AboutModal
